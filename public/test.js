@@ -44,18 +44,20 @@
 
 
 	var count = getQueryVariable("id");
-	function ShowRecent(){
-		document.getElementById("process").innerHTML = count+"/5";		
-	}
 
 	function Next(){
-		if (count<5){			
-		count = parseInt(count)+1;
-		window.location = "test.html?id="+count;
+		if(count==NaN||count==false){
+			window.location = "test.html?id=2";	
 		}
-		else
-		{
-		window.location = "end.html";
-		}		
+		else{
+			if (count<5){			
+				count = parseInt(count)+1;
+				window.location = "test.html?id="+count;
+			}
+			else
+			{
+				window.location = "end.html";
+			}	
+		}	
 	}
 	

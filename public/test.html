@@ -14,9 +14,16 @@
 
 </head>
   <body>
-	<p id="process"></process>
+	<p id="process">1/5</process>
 
-    <script>document.getElementById("process").innerHTML = count+"/5";</script>
+    <script>
+	    if(count==false){
+		    document.getElementById("process").innerHTML = "1/5";
+	    }
+	    else{
+			document.getElementById("process").innerHTML = count+"/5";    
+	    }
+	</script>
 
 	<p id ="up">
 	    <img id = "1" onclick="chooseImg(id,src)" src ="./images/lgtoff.jpg" width = "320" height ="320">
