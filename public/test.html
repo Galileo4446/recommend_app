@@ -9,7 +9,6 @@
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>
 
     <script src="test.js"></script >
-
  	<script src="test_driver.js"></script >
 
 </head>
@@ -26,18 +25,18 @@
 	</script>
 
 	<p id ="up">
-	    <img id = "1" onclick="chooseImg(id,src)" src ="../images/lgtoff.jpg" width = "320" height ="320">
-	    <img id = "2" onclick="chooseImg(id,src)" src ="../images/lgtoff.jpg" width = "320" height ="320">
+	    <img id = "pic1" onclick="chooseImg(id,src)" src ="../images/lgtoff.jpg" width = "320" height ="320">
+	    <img id = "pic2" onclick="chooseImg(id,src)" src ="../images/lgtoff.jpg" width = "320" height ="320">
 	</p>
 
 	<p id="botton">
-	    <img id = "3" onclick="chooseImg(id,src)" src ="../images/lgtoff.jpg" width = "320" height ="320">
-	    <img id = "4" onclick="chooseImg(id,src)" src ="../images/lgtoff.jpg" width = "320" height ="320">
+	    <img id = "pic3" onclick="chooseImg(id,src)" src ="../images/lgtoff.jpg" width = "320" height ="320">
+	    <img id = "pic4" onclick="chooseImg(id,src)" src ="../images/lgtoff.jpg" width = "320" height ="320">
 	</p>
 
     <script>
 		for(var i=0;i<4;i++){
-			document.getElementById(String(i+1)).src = "../images/"+usr_fav[i]+".jpg";
+			document.getElementById("pic"+String(i+1)).src = "../images/"+usr_fav[i]+".jpg";
 		}    
     </script>
 

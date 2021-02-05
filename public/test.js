@@ -8,13 +8,13 @@
 		if (element.src.match("lgton"))
 		{
 			element.src = previous_path[id];
-			chosen[id] = 0;			
+			chosen[id.slice(3)] = 0;			
 		} 
 		else 
 		{
 			previous_path[id] = src;
 			element.src = "../images/lgton.jpg";
-			chosen[id] = 1;
+			chosen[id.slice(3)] = 1;
 		}
 	 }
 
@@ -28,8 +28,10 @@
 		}
 		if (total != ""){
 			alert(total);			
-		}					
+		}			
+		//console.log(total);		
 	}
+	
 
 	function getQueryVariable(variable)
 	{

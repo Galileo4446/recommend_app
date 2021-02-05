@@ -1,4 +1,4 @@
-$(document).ready(function(){
+                                                                                                                                                                                             $(document).ready(function(){
   var firebaseConfig = {
       apiKey: "AIzaSyBmO4dLGt5aasYgt9iIcnadjE21Hfw8RCE",
       authDomain: "recommend-app-c2184.firebaseapp.com",
