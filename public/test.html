@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" name="viewport" content="width=320,maximum-scale=1.3,user-scalable=no">
+    <title>Choose your favorite</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>
+
+    <script src="test.js"></script >
+ 	<script src="test_driver.js"></script >
+
+</head>
+  <body>
+	<p id="process">1/5</process>
+
+    <script>
+	    if(count==false){
+		    document.getElementById("process").innerHTML = "1/5";
+	    }
+	    else{
+			document.getElementById("process").innerHTML = count+"/5";    
+	    }
+	</script>
+
+	<p id ="up">
+	    <img id = "pic1" onclick="chooseImg(id,src)" src ="../images/lgtoff.jpg" width = "320" height ="320">
+	    <img id = "pic2" onclick="chooseImg(id,src)" src ="../images/lgtoff.jpg" width = "320" height ="320">
+	</p>
+
+	<p id="botton">
+	    <img id = "pic3" onclick="chooseImg(id,src)" src ="../images/lgtoff.jpg" width = "320" height ="320">
+	    <img id = "pic4" onclick="chooseImg(id,src)" src ="../images/lgtoff.jpg" width = "320" height ="320">
+	</p>
+
+    <script>
+		for(var i=0;i<4;i++){
+			document.getElementById("pic"+String(i+1)).src = "../images/"+usr_fav[i]+".jpg";
+		}    
+    </script>
+
+	<button type = "button" onclick="show()">Show Recent</button>
+	<button type = "button" onclick="Next()">Next Step</button>
+
+
+  </body>
+</html>
