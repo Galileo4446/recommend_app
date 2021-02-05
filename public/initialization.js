@@ -139,4 +139,61 @@ $(document).ready(function(){
         });
     });
 
+
+    // データ取得
+    // db.collection("clothes").get().then((querySnapshot) => {
+    //     querySnapshot.forEach((doc) => {
+    //         console.log(`${doc.data().name} => ${doc.data().number}`);
+    //         console.log(doc.data().color_vividness)
+    //         console.log(doc.data().color_brightness)
+    //         console.log(doc.data().formal)
+    //         console.log(doc.data().decorative)
+    //         console.log(doc.data().relaxed)
+    //         console.log(doc.data().glossy)
+    //         console.log(doc.data().smoothness)
+    //     });
+    // });
+
+    // db.collection("clothes").get().then((querySnapshot) => {
+    //     querySnapshot.forEach((doc) => {
+    //         console.log(`${doc.data().name} => ${doc.data().number}`);
+    //         console.log(doc.data().color_vividness)
+    //         console.log(doc.data().color_brightness)
+    //         console.log(doc.data().formal)
+    //         console.log(doc.data().decorative)
+    //         console.log(doc.data().relaxed)
+    //         console.log(doc.data().glossy)
+    //         console.log(doc.data().smoothness)
+    //     });
+    // });
+
+
+    var like_list = ["parker1", "shirt1", "jacket1"];
+
+    function calc_avg (like_list) {
+        var avg_color_vividness = 0;
+        var avg_color_brightness = 0;
+        var avg_formal = 0;
+        var avg_decorative = 0;
+        var avg_relaxed = 0;
+        var avg_glossy = 0;
+        var avg_smoothness = 0;
+        $.each(like_list, function(index, value){
+            db.collection("clothes").doc(value).get().then((doc) => {
+                console.log(doc.data().name)
+                avg_color_vividness += parseInt(doc.data().color_vividness);
+                avg_color_brightness += parseInt(doc.data().color_brightness);
+                avg_formal += parseInt(doc.data().formal);
+                avg_decorative += parseInt(doc.data().decorative);
+                avg_relaxed += parseInt(doc.data().relaxed);
+                avg_glossy += parseInt(doc.data().glossy);
+                avg_smoothness += parseInt(doc.data().smoothness);
+                console.log(avg_color_brightness / like_list.length); 
+            });
+            console.log(avg_color_vividness); 
+        });
+        console.log(avg_color_vividness);
+    };
+    calc_avg(like_list);
+
 });
