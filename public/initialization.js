@@ -14,7 +14,8 @@ $(document).ready(function(){
     //   firebase.analytics();
     var db = firebase.firestore();
 
-    var parker1 = {name: "parker1",
+    var parker1 = {number: 1,
+        name: "parker1",
         color_vividness:  1,
         color_brightness: 2,
         formal:           8,
@@ -23,7 +24,8 @@ $(document).ready(function(){
         glossy:           7,
         smoothness:       3
     };
-    var parker2 = {name: "parker2",
+    var parker2 = {number: 2,
+        name: "parker2",
         color_vividness:  2,
         color_brightness: 3,
         formal:           1,
@@ -32,7 +34,8 @@ $(document).ready(function(){
         glossy:           6,
         smoothness:       3
     };
-    var sweat1 = {name: "sweat1",
+    var sweat1 = {number: 3,
+        name: "sweat1",
         color_vividness:  6,
         color_brightness: 6,
         formal:           3,
@@ -41,7 +44,8 @@ $(document).ready(function(){
         glossy:           4,
         smoothness:       7
     };
-    var knit1 = {name: "knit1",
+    var knit1 = {number:  4,
+        name: "knit1",
         color_vividness:  4,
         color_brightness: 7,
         formal:           5,
@@ -50,7 +54,8 @@ $(document).ready(function(){
         glossy:           4,
         smoothness:       4
     };
-    var knit2 = {name: "knit2",
+    var knit2 = {number:  5,
+        name: "knit2",
         color_vividness:  3,
         color_brightness: 3,
         formal:           5,
@@ -59,7 +64,8 @@ $(document).ready(function(){
         glossy:           3,
         smoothness:       6
     };
-    var knit3 = {name: "knit3",
+    var knit3 = {number:  6,
+        name: "knit3",
         color_vividness:  3,
         color_brightness: 7,
         formal:           4,
@@ -69,7 +75,8 @@ $(document).ready(function(){
         smoothness:       7
     };
 
-    var shirt1 = {name: "shirt1",
+    var shirt1 = {number: 7,
+        name: "shirt1",
         color_vividness:  1,
         color_brightness: 9,
         formal:           7,
@@ -78,7 +85,8 @@ $(document).ready(function(){
         glossy:           7,
         smoothness:       4
     };
-    var shirt2 = {name: "shirt2",
+    var shirt2 = {number: 8,
+        name: "shirt2",
         color_vividness:  7,
         color_brightness: 7,
         formal:           5,
@@ -87,7 +95,8 @@ $(document).ready(function(){
         glossy:           8,
         smoothness:       3
     };
-    var shirt3 = {name: "shirt3",
+    var shirt3 = {number: 9,
+        name: "shirt3",
         color_vividness:  6,
         color_brightness: 6,
         formal:           4,
@@ -96,7 +105,8 @@ $(document).ready(function(){
         glossy:           4,
         smoothness:       8
     };
-    var jacket1 = {name: "jacket1",
+    var jacket1 = {number: 10,
+        name: "jacket1",
         color_vividness:  1,
         color_brightness: 2,
         formal:           8,
@@ -128,5 +138,62 @@ $(document).ready(function(){
             console.error("Error adding document: ", error);
         });
     });
+
+
+    // データ取得
+    // db.collection("clothes").get().then((querySnapshot) => {
+    //     querySnapshot.forEach((doc) => {
+    //         console.log(`${doc.data().name} => ${doc.data().number}`);
+    //         console.log(doc.data().color_vividness)
+    //         console.log(doc.data().color_brightness)
+    //         console.log(doc.data().formal)
+    //         console.log(doc.data().decorative)
+    //         console.log(doc.data().relaxed)
+    //         console.log(doc.data().glossy)
+    //         console.log(doc.data().smoothness)
+    //     });
+    // });
+
+    // db.collection("clothes").get().then((querySnapshot) => {
+    //     querySnapshot.forEach((doc) => {
+    //         console.log(`${doc.data().name} => ${doc.data().number}`);
+    //         console.log(doc.data().color_vividness)
+    //         console.log(doc.data().color_brightness)
+    //         console.log(doc.data().formal)
+    //         console.log(doc.data().decorative)
+    //         console.log(doc.data().relaxed)
+    //         console.log(doc.data().glossy)
+    //         console.log(doc.data().smoothness)
+    //     });
+    // });
+
+
+    var like_list = ["parker1", "shirt1", "jacket1"];
+
+    function calc_avg (like_list) {
+        var avg_color_vividness = 0;
+        var avg_color_brightness = 0;
+        var avg_formal = 0;
+        var avg_decorative = 0;
+        var avg_relaxed = 0;
+        var avg_glossy = 0;
+        var avg_smoothness = 0;
+        $.each(like_list, function(index, value){
+            db.collection("clothes").doc(value).get().then((doc) => {
+                console.log(doc.data().name)
+                avg_color_vividness += parseInt(doc.data().color_vividness);
+                avg_color_brightness += parseInt(doc.data().color_brightness);
+                avg_formal += parseInt(doc.data().formal);
+                avg_decorative += parseInt(doc.data().decorative);
+                avg_relaxed += parseInt(doc.data().relaxed);
+                avg_glossy += parseInt(doc.data().glossy);
+                avg_smoothness += parseInt(doc.data().smoothness);
+                console.log(avg_color_brightness / like_list.length); 
+            });
+            console.log(avg_color_vividness); 
+        });
+        console.log(avg_color_vividness);
+    };
+    calc_avg(like_list);
 
 });
