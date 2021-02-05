@@ -14,7 +14,8 @@ $(document).ready(function(){
     //   firebase.analytics();
     var db = firebase.firestore();
 
-    var parker1 = {name: "parker1",
+    var parker1 = {number: 1,
+        name: "parker1",
         color_vividness:  1,
         color_brightness: 2,
         formal:           8,
@@ -23,7 +24,8 @@ $(document).ready(function(){
         glossy:           7,
         smoothness:       3
     };
-    var parker2 = {name: "parker2",
+    var parker2 = {number: 2,
+        name: "parker2",
         color_vividness:  2,
         color_brightness: 3,
         formal:           1,
@@ -32,7 +34,8 @@ $(document).ready(function(){
         glossy:           6,
         smoothness:       3
     };
-    var sweat1 = {name: "sweat1",
+    var sweat1 = {number: 3,
+        name: "sweat1",
         color_vividness:  6,
         color_brightness: 6,
         formal:           3,
@@ -41,7 +44,8 @@ $(document).ready(function(){
         glossy:           4,
         smoothness:       7
     };
-    var knit1 = {name: "knit1",
+    var knit1 = {number:  4,
+        name: "knit1",
         color_vividness:  4,
         color_brightness: 7,
         formal:           5,
@@ -50,7 +54,8 @@ $(document).ready(function(){
         glossy:           4,
         smoothness:       4
     };
-    var knit2 = {name: "knit2",
+    var knit2 = {number:  5,
+        name: "knit2",
         color_vividness:  3,
         color_brightness: 3,
         formal:           5,
@@ -59,7 +64,8 @@ $(document).ready(function(){
         glossy:           3,
         smoothness:       6
     };
-    var knit3 = {name: "knit3",
+    var knit3 = {number:  6,
+        name: "knit3",
         color_vividness:  3,
         color_brightness: 7,
         formal:           4,
@@ -69,7 +75,8 @@ $(document).ready(function(){
         smoothness:       7
     };
 
-    var shirt1 = {name: "shirt1",
+    var shirt1 = {number: 7,
+        name: "shirt1",
         color_vividness:  1,
         color_brightness: 9,
         formal:           7,
@@ -78,7 +85,8 @@ $(document).ready(function(){
         glossy:           7,
         smoothness:       4
     };
-    var shirt2 = {name: "shirt2",
+    var shirt2 = {number: 8,
+        name: "shirt2",
         color_vividness:  7,
         color_brightness: 7,
         formal:           5,
@@ -87,7 +95,8 @@ $(document).ready(function(){
         glossy:           8,
         smoothness:       3
     };
-    var shirt3 = {name: "shirt3",
+    var shirt3 = {number: 9,
+        name: "shirt3",
         color_vividness:  6,
         color_brightness: 6,
         formal:           4,
@@ -96,7 +105,8 @@ $(document).ready(function(){
         glossy:           4,
         smoothness:       8
     };
-    var jacket1 = {name: "jacket1",
+    var jacket1 = {number: 10,
+        name: "jacket1",
         color_vividness:  1,
         color_brightness: 2,
         formal:           8,
