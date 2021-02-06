@@ -219,16 +219,16 @@ $(document).ready(async function(){
         glossy:           7,
         smoothness:       3
     };
-    const user_2 = {number: 22,
-        name: "user2",
-        color_vividness:  0,
-        color_brightness: 0,
-        formal:           0,
-        decorative:       0,
-        relaxed:          0,
-        glossy:           0,
-        smoothness:       0
-    };
+    // const user_2 = {number: 22,
+    //     name: "user2",
+    //     color_vividness:  0,
+    //     color_brightness: 0,
+    //     formal:           0,
+    //     decorative:       0,
+    //     relaxed:          0,
+    //     glossy:           0,
+    //     smoothness:       0
+    // };
 
 
     $("#button_init").on('click',function(){
@@ -253,7 +253,7 @@ $(document).ready(async function(){
         db.collection("clothes_recommend").doc("shirt12").set(shirt12)
         db.collection("clothes_recommend").doc("shirt13").set(shirt13)
         db.collection("clothes_recommend").doc("jacket11").set(jacket11)
-        db.collection("users").doc("aHmJnWcgapfKo1HyFU0bjh0cc0J2").set(user_2)
+        // db.collection("users").doc("aHmJnWcgapfKo1HyFU0bjh0cc0J2").set(user_2)
 
 
         // 成功
@@ -348,8 +348,11 @@ $(document).ready(async function(){
         return recommend_num;
     };
 
-    const like_list = await get_like_list("7Y65aOJGorqY7ELWdSBP")
+    // usersのidを引数に、like_listにアクセス。
+    // const like_list = await get_like_list("7Y65aOJGorqY7ELWdSBP")
+    const like_list = await get_like_list("aHmJnWcgapfKo1HyFU0bjh0cc0J2")
 
+    // like_listから、
     const like_list_avg = await calc_avg(like_list);
     console.log("calc_average")
     console.log(like_list_avg);
@@ -357,11 +360,10 @@ $(document).ready(async function(){
     const recommend_num = await recommend_clothes(like_list_avg);
     console.log("recommend id is")
     console.log(recommend_num);
-    $("#test").html(recommend_num);
 
-
-
+    // おすすめ商品を表示する関数
     $('#next_button').on('click', function() {
+        // 配列を宣言
         $('#pic_field').html(
             `
             <div id ="up" style="text-align:center">
@@ -370,6 +372,7 @@ $(document).ready(async function(){
             <p>Recommend機能をご利用いただきありがとうございます。</p>
             <p>表示されている商品に限り、5%OFFでご提供させていただきます。</p>
             <p>また、店舗購入でさらに10%OFFで購入できます！</p>
+            <input id="home_button" type="button" value="Home"/>
             </div>
             `
         );
