@@ -13,7 +13,7 @@
 		else 
 		{
 			previous_path[id] = src;
-			element.src = "../images/lgton.jpg";
+			element.src = "./images/lgton.jpg";
 			chosen[id.slice(3)] = 1;
 		}
 	 }
