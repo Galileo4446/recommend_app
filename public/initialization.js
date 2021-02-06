@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).ready(async function(){
 
     var firebaseConfig = {
         apiKey: "AIzaSyBmO4dLGt5aasYgt9iIcnadjE21Hfw8RCE",
@@ -168,32 +168,57 @@ $(document).ready(function(){
     // });
 
 
-    var like_list = ["parker1", "shirt1", "jacket1"];
+    let like_list = ["parker1", "shirt1", "jacket1"];
 
-    function calc_avg (like_list) {
-        var avg_color_vividness = 0;
-        var avg_color_brightness = 0;
-        var avg_formal = 0;
-        var avg_decorative = 0;
-        var avg_relaxed = 0;
-        var avg_glossy = 0;
-        var avg_smoothness = 0;
-        $.each(like_list, function(index, value){
-            db.collection("clothes").doc(value).get().then((doc) => {
-                console.log(doc.data().name)
-                avg_color_vividness += parseInt(doc.data().color_vividness);
-                avg_color_brightness += parseInt(doc.data().color_brightness);
-                avg_formal += parseInt(doc.data().formal);
-                avg_decorative += parseInt(doc.data().decorative);
-                avg_relaxed += parseInt(doc.data().relaxed);
-                avg_glossy += parseInt(doc.data().glossy);
-                avg_smoothness += parseInt(doc.data().smoothness);
-                console.log(avg_color_brightness / like_list.length); 
-            });
-            console.log(avg_color_vividness); 
+    const calc_avg = async (like_list) => {
+        let sum_color_vividness = 0;
+        let sum_color_brightness = 0;
+        let sum_formal = 0;
+        let sum_decorative = 0;
+        let sum_relaxed = 0;
+        let sum_glossy = 0;
+        let sum_smoothness = 0;
+        
+        const querySnapshot = await db.collection("clothes").get();
+        
+        querySnapshot.forEach(doc => {
+            const data = doc.data();
+            if (like_list.includes(doc.id)) {
+                sum_color_vividness += parseInt(data.color_vividness, 10);
+                sum_color_brightness+= parseInt(data.color_brightness, 10);
+                sum_formal += parseInt(data.formal, 10);
+                sum_decorative += parseInt(data.decorative, 10);
+                sum_relaxed += parseInt(data.relaxed, 10);
+                sum_glossy += parseInt(data.glossy, 10);
+                sum_smoothness += parseInt(data.smoothness, 10);
+            }
         });
-        console.log(avg_color_vividness);
+        
+        // console.log(sum_color_vividness);
+        // console.log(sum_color_vividness / like_list.length);
+        const avg_color_vividness = sum_color_vividness / like_list.length;
+        const avg_color_brightness = sum_color_brightness / like_list.length;
+        const avg_formal = sum_formal /like_list.length;
+        const avg_decorative = sum_decorative /like_list.length;
+        const avg_relaxed = sum_relaxed /like_list.length;
+        const avg_glossy = sum_glossy /like_list.length;
+        const avg_smoothness = sum_smoothness /like_list.length;
+        return ({
+            avg_color_vividness,
+            avg_color_brightness,
+            avg_formal,
+            avg_decorative,
+            avg_relaxed,
+            avg_glossy,
+            avg_smoothness
+        });
     };
-    calc_avg(like_list);
+    const like_list_avg = await calc_avg(like_list);
+    console.log(like_list_avg);
 
+    const recommend_clothes = async (like_list) => {
+        // clothes 全て見て、おすすめの服のidをreturn
+
+    }
+    
 });
