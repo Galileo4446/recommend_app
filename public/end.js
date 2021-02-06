@@ -135,6 +135,6 @@ $(document).ready(async function(){
     );
     $("#home_button").on('click',function(){
         console.log("test")
-        window.location.href = './index.html'; // 通常の遷移
+        window.location.href = './main_page.html'; // 通常の遷移
     });
 });

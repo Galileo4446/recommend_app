@@ -8,8 +8,8 @@ function getRandomInt() {
 
 
 
-for(var i=0;i<5;i++){
+for(var i=0;i<6;i++){
 	usr_fav[i] = getRandomInt();	
 }
 
-console.log(usr_fav);
+//console.log(usr_fav);

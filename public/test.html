@@ -15,10 +15,10 @@
 
 </head>
   <body>
-	<div class="banner"><img  src="./images/banner_2.png" style="max-width: 100%"></div>
+	<div class="banner"><img  src="../images/banner_2.png" style="max-width: 100%"></div>
 	<h1 id="process"></h1>
 
-    <script>
+  <!--  <script>
 	    if(count==false){
 		    document.getElementById("process").innerHTML = "1/2";
 	    }
@@ -26,26 +26,24 @@
 			document.getElementById("process").innerHTML = count+"/2";    
 	    }
 	</script>
-
-	<div id ="up" style="text-align:center">
-	    <img id = "pic1" onclick="chooseImg(id,src)" src ="./images/lgtoff.jpg" width = "320" height ="320">
-	    <img id = "pic2" onclick="chooseImg(id,src)" src ="./images/lgtoff.jpg" width = "320" height ="320">
+-->
+	<div id ="show" style="text-align:center">
+	    <img class="pic" id = "pic1"  src ="../images/lgtoff.jpg">
+	    <img class="pic" id = "pic2"  src ="../images/lgtoff.jpg">
+	<br></br>
+	    <img class="pic" id = "pic3"  src ="../images/lgtoff.jpg">
+	    <img class="pic" id = "pic4"  src ="../images/lgtoff.jpg">
 	</div>
 
-	<div id="botton" style="text-align:center">
-	    <img id = "pic3" onclick="chooseImg(id,src)" src ="./images/lgtoff.jpg" width = "320" height ="320">
-	    <img id = "pic4" onclick="chooseImg(id,src)" src ="./images/lgtoff.jpg" width = "320" height ="320">
-	</div>
 
-    <script>
-		for(var i=0;i<4;i++){
-			document.getElementById("pic"+String(i+1)).src = "./images/"+usr_fav[i]+".jpg";
-		}    
-    </script>
 	<div class="align_ctr">
-	<button type = "button" onclick="javascript:window.location='main_page.html'">Homepage</button>
-	<button type = "button" onclick="show()">Show Recent</button>
-	<button type = "button" onclick="Next()">Next Step</button>
+
+	<img id="home" src="./images/home.png">
+	<!--<button id="showr" type = "button" >Show Recent</button>
+	<button id="next_btn" type = "button" onclick="Next()">Next Step</button>-->
+
+	<img id="next_btn" src="./images/next_2.png">
+	
 	</div>
 
   </body>
