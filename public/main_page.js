@@ -12,10 +12,3 @@
 
 		});
 	});
-
-
- 	function float_btn(){
-		
-		window.location = "test.html?id=1";
-	 	
- 	}

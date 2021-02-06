@@ -31,7 +31,6 @@
 		}			
 		//console.log(total);		
 	}
-	
 
 	function getQueryVariable(variable)
 	{
