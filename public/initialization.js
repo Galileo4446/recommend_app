@@ -139,36 +139,18 @@ $(document).ready(async function(){
         });
     });
 
-
-    // データ取得
-    // db.collection("clothes").get().then((querySnapshot) => {
-    //     querySnapshot.forEach((doc) => {
-    //         console.log(`${doc.data().name} => ${doc.data().number}`);
-    //         console.log(doc.data().color_vividness)
-    //         console.log(doc.data().color_brightness)
-    //         console.log(doc.data().formal)
-    //         console.log(doc.data().decorative)
-    //         console.log(doc.data().relaxed)
-    //         console.log(doc.data().glossy)
-    //         console.log(doc.data().smoothness)
-    //     });
-    // });
-
-    // db.collection("clothes").get().then((querySnapshot) => {
-    //     querySnapshot.forEach((doc) => {
-    //         console.log(`${doc.data().name} => ${doc.data().number}`);
-    //         console.log(doc.data().color_vividness)
-    //         console.log(doc.data().color_brightness)
-    //         console.log(doc.data().formal)
-    //         console.log(doc.data().decorative)
-    //         console.log(doc.data().relaxed)
-    //         console.log(doc.data().glossy)
-    //         console.log(doc.data().smoothness)
-    //     });
-    // });
-
-
-    let like_list = ["parker2", "shirt3", "jacket1"];
+    const get_like_list = async (user_id) => {
+        const querySnapshot = await db.collection("users").get();
+        let like_list;
+        querySnapshot.forEach(doc => {
+            const data = doc.data();
+            if (doc.id == user_id) {
+                like_list = data.like_list;
+            };
+            console.log(data.name)
+        });
+        return like_list;
+    };
 
     const calc_avg = async (like_list) => {
         let sum_color_vividness = 0;
@@ -211,9 +193,6 @@ $(document).ready(async function(){
             avg_smoothness
         });
     };
-    const like_list_avg = await calc_avg(like_list);
-    console.log(like_list_avg);
-
     // 商品の中からおすすめを選択し、idで表示。
     const recommend_clothes = async (like_list_avg) => {
         const querySnapshot = await db.collection("clothes").get();
@@ -237,7 +216,15 @@ $(document).ready(async function(){
         });
         return recommend_id;
     };
+
+    const like_list = await get_like_list("7Y65aOJGorqY7ELWdSBP")
+
+    const like_list_avg = await calc_avg(like_list);
+    // console.log("calc_average")
+    // console.log(like_list_avg);
+
     const recommend_id = await recommend_clothes(like_list_avg);
+    console.log("recommend id is")
     console.log(recommend_id);
     $("#test").html(recommend_id);
 
