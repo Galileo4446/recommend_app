@@ -13,7 +13,7 @@
 		else 
 		{
 			previous_path[id] = src;
-			element.src = "../images/lgton.jpg";
+			element.src = "./images/lgton.jpg";
 			chosen[id.slice(3)] = 1;
 		}
 	 }
@@ -31,7 +31,6 @@
 		}			
 		//console.log(total);		
 	}
-	
 
 	function getQueryVariable(variable)
 	{
@@ -52,7 +51,7 @@
 			window.location = "test.html?id=2";	
 		}
 		else{
-			if (count<5){			
+			if (count<2){			
 				count = parseInt(count)+1;
 				window.location = "test.html?id="+count;
 			}

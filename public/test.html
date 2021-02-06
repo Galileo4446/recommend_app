@@ -8,41 +8,45 @@
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>
 
+	<link rel="stylesheet" type="text/css" href="test.css">
+
     <script src="test.js"></script >
  	<script src="test_driver.js"></script >
 
 </head>
   <body>
-	<p id="process">1/5</process>
+	<div class="banner"><img  src="./images/banner_2.png" style="max-width: 100%"></div>
+	<h1 id="process"></h1>
 
     <script>
 	    if(count==false){
-		    document.getElementById("process").innerHTML = "1/5";
+		    document.getElementById("process").innerHTML = "1/2";
 	    }
 	    else{
-			document.getElementById("process").innerHTML = count+"/5";    
+			document.getElementById("process").innerHTML = count+"/2";    
 	    }
 	</script>
 
-	<p id ="up">
-	    <img id = "pic1" onclick="chooseImg(id,src)" src ="../images/lgtoff.jpg" width = "320" height ="320">
-	    <img id = "pic2" onclick="chooseImg(id,src)" src ="../images/lgtoff.jpg" width = "320" height ="320">
-	</p>
+	<div id ="up" style="text-align:center">
+	    <img id = "pic1" onclick="chooseImg(id,src)" src ="./images/lgtoff.jpg" width = "320" height ="320">
+	    <img id = "pic2" onclick="chooseImg(id,src)" src ="./images/lgtoff.jpg" width = "320" height ="320">
+	</div>
 
-	<p id="botton">
-	    <img id = "pic3" onclick="chooseImg(id,src)" src ="../images/lgtoff.jpg" width = "320" height ="320">
-	    <img id = "pic4" onclick="chooseImg(id,src)" src ="../images/lgtoff.jpg" width = "320" height ="320">
-	</p>
+	<div id="botton" style="text-align:center">
+	    <img id = "pic3" onclick="chooseImg(id,src)" src ="./images/lgtoff.jpg" width = "320" height ="320">
+	    <img id = "pic4" onclick="chooseImg(id,src)" src ="./images/lgtoff.jpg" width = "320" height ="320">
+	</div>
 
     <script>
 		for(var i=0;i<4;i++){
-			document.getElementById("pic"+String(i+1)).src = "../images/"+usr_fav[i]+".jpg";
+			document.getElementById("pic"+String(i+1)).src = "./images/"+usr_fav[i]+".jpg";
 		}    
     </script>
-
+	<div class="align_ctr">
+	<button type = "button" onclick="javascript:window.location='main_page.html'">Homepage</button>
 	<button type = "button" onclick="show()">Show Recent</button>
 	<button type = "button" onclick="Next()">Next Step</button>
-
+	</div>
 
   </body>
 </html>

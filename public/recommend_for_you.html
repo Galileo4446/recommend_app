@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>title</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>
+</head>
+<body>
+    <div id="pic_field">
+        <div id ="up" style="text-align:center">
+            <p>Recommend For You!!</p>
+            <img src="./images/${recommend_num}.jpg" alt="${recommend_num}" width = "640" height ="640">
+            <p>Recommend機能をご利用いただきありがとうございます。</p>
+            <p>表示されている商品に限り、5%OFFでご提供させていただきます。</p>
+            <p>また、店舗購入でさらに10%OFFで購入できます！</p>
+        </div>
+        <div id="button" style="text-align:center">
+            <input id="home_button" type="button" value="Home"/>
+        </div> 
+    </div>
+
+
+    <script src="./initialization.js"></script>
+</body>
+</html>

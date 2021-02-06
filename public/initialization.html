@@ -9,8 +9,34 @@
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>
 </head>
   <body>
-    <ul id="test">初期化</ul>
     <input id="button_init" type="button" value="初期化"/>
+
+    <div id="pic_field">
+        <!-- <input type="checkbox" id="parker1" value="parker1">parker1
+        <input type="checkbox" id="parker2" value="parker2">parker2
+        <input type="checkbox" id="sweat1" value="sweat1">sweat1
+        <input type="checkbox" id="knit1" value="knit1">knit1
+        <input type="checkbox" id="knit2" value="knit2">knit2
+        <input type="checkbox" id="knit3" value="knit3">knit3
+        <input type="checkbox" id="shirt1" value="shirt1">shirt1
+        <input type="checkbox" id="shirt2" value="shirt2">shirt2
+        <input type="checkbox" id="shirt3" value="shirt3">shirt3
+        <input type="checkbox" id="jacket1" value="jacket1">jacket1
+ -->
+      <div id ="up" style="text-align:center">
+          <img id = "pic1" onclick="chooseImg(id,src)" src ="./images/1.jpg" width = "320" height ="320">
+          <img id = "pic2" onclick="chooseImg(id,src)" src ="./images/2.jpg" width = "320" height ="320">
+      </div>
+      <div id="bottom" style="text-align:center">
+          <img id = "pic3" onclick="chooseImg(id,src)" src ="./images/3.jpg" width = "320" height ="320">
+          <img id = "pic4" onclick="chooseImg(id,src)" src ="./images/4.jpg" width = "320" height ="320">
+      </div>
+      <div id="button" style="text-align:center">
+        <input id="back_button" type="button" value="back"/>
+        <input id="next_button" type="button" value="next"/>
+      </div> 
+    </div>
+
     <script src="./initialization.js"></script>
   </body>
 </html>
