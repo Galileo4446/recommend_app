@@ -219,6 +219,17 @@ $(document).ready(async function(){
         glossy:           7,
         smoothness:       3
     };
+    const user_2 = {number: 22,
+        name: "user2",
+        color_vividness:  0,
+        color_brightness: 0,
+        formal:           0,
+        decorative:       0,
+        relaxed:          0,
+        glossy:           0,
+        smoothness:       0
+    };
+
 
     $("#button_init").on('click',function(){
         //   userコレクションに追加
@@ -242,6 +253,8 @@ $(document).ready(async function(){
         db.collection("clothes_recommend").doc("shirt12").set(shirt12)
         db.collection("clothes_recommend").doc("shirt13").set(shirt13)
         db.collection("clothes_recommend").doc("jacket11").set(jacket11)
+        db.collection("users").doc("aHmJnWcgapfKo1HyFU0bjh0cc0J2").set(user_2)
+
 
         // 成功
         .then(function(docRef) {
@@ -346,6 +359,21 @@ $(document).ready(async function(){
     console.log(recommend_num);
     $("#test").html(recommend_num);
 
-    $('#demo3').html(`<img src="../images/${recommend_num}.jpg" alt="${recommend_num}">`);
+
+
+    $('#next_button').on('click', function() {
+        $('#pic_field').html(
+            `
+            <div id ="up" style="text-align:center">
+            <p>Recommend For You!!</p>
+            <img src="../images/${recommend_num}.jpg" alt="${recommend_num}" width = "640" height ="640">
+            <p>Recommend機能をご利用いただきありがとうございます。</p>
+            <p>表示されている商品に限り、5%OFFでご提供させていただきます。</p>
+            <p>また、店舗購入でさらに10%OFFで購入できます！</p>
+            </div>
+            `
+        );
+    });
+
 
 });
