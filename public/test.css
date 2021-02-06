@@ -1,8 +1,14 @@
 	body
 	{
-	background-image: url('../images/bg.jpg');
-	background-color: #cccccc;
+	background-color: #dde3ec;
 	}
+
+	.banner{
+		text-align:center;
+		background: #303844;
+		margin:0 auto;		
+		}
+
 
 .align_ctr{
 	text-align:center;
