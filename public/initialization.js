@@ -338,8 +338,8 @@ $(document).ready(async function(){
     const like_list = await get_like_list("7Y65aOJGorqY7ELWdSBP")
 
     const like_list_avg = await calc_avg(like_list);
-    // console.log("calc_average")
-    // console.log(like_list_avg);
+    console.log("calc_average")
+    console.log(like_list_avg);
 
     const recommend_num = await recommend_clothes(like_list_avg);
     console.log("recommend id is")
