@@ -168,7 +168,7 @@ $(document).ready(async function(){
     // });
 
 
-    let like_list = ["parker1", "shirt1", "jacket1"];
+    let like_list = ["parker2", "shirt3", "jacket1"];
 
     const calc_avg = async (like_list) => {
         let sum_color_vividness = 0;
@@ -194,8 +194,6 @@ $(document).ready(async function(){
             }
         });
         
-        // console.log(sum_color_vividness);
-        // console.log(sum_color_vividness / like_list.length);
         const avg_color_vividness = sum_color_vividness / like_list.length;
         const avg_color_brightness = sum_color_brightness / like_list.length;
         const avg_formal = sum_formal /like_list.length;
@@ -216,9 +214,32 @@ $(document).ready(async function(){
     const like_list_avg = await calc_avg(like_list);
     console.log(like_list_avg);
 
-    const recommend_clothes = async (like_list) => {
-        // clothes 全て見て、おすすめの服のidをreturn
+    // 商品の中からおすすめを選択し、idで表示。
+    const recommend_clothes = async (like_list_avg) => {
+        const querySnapshot = await db.collection("clothes").get();
+        let minimum_cost = 10000;
+        let recommend_id = "";
 
-    }
-    
+        querySnapshot.forEach(doc => {
+            const data = doc.data();
+            let cost = 0;
+            cost += Math.abs(like_list_avg.avg_color_brightness - parseInt(data.color_brightness, 10));
+            cost += Math.abs(like_list_avg.avg_color_vividness - parseInt(data.color_vividness, 10));
+            cost += Math.abs(like_list_avg.avg_formal - parseInt(data.formal, 10));
+            cost += Math.abs(like_list_avg.avg_decorative - parseInt(data.decorative, 10));
+            cost += Math.abs(like_list_avg.avg_relaxed - parseInt(data.relaxed, 10));
+            cost += Math.abs(like_list_avg.avg_glossy - parseInt(data.glossy, 10));
+            cost += Math.abs(like_list_avg.avg_smoothness - parseInt(data.smoothness, 10));
+            if (cost < minimum_cost) {
+                minimum_cost = cost;
+                recommend_id = doc.id;
+            };
+        });
+        return recommend_id;
+    };
+    const recommend_id = await recommend_clothes(like_list_avg);
+    console.log(recommend_id);
+    $("#test").html(recommend_id);
+
+
 });
