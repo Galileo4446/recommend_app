@@ -133,4 +133,8 @@ $(document).ready(async function(){
         </div>
         `
     );
+    $("#home_button").on('click',function(){
+        console.log("test")
+        window.location.href = './index.html'; // 通常の遷移
+    });
 });
