@@ -1,4 +1,4 @@
-$(document).ready(async function(){
+$(document).ready(function(){
 
     var firebaseConfig = {
         apiKey: "AIzaSyBmO4dLGt5aasYgt9iIcnadjE21Hfw8RCE",
@@ -363,7 +363,6 @@ $(document).ready(async function(){
 
     // おすすめ商品を表示する関数
     $('#next_button').on('click', function() {
-        // 配列を宣言
         $('#pic_field').html(
             `
             <div id ="up" style="text-align:center">
@@ -377,6 +376,4 @@ $(document).ready(async function(){
             `
         );
     });
-
-
 });
