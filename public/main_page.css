@@ -1,7 +1,53 @@
+	body
+	{
+	//background-image: url('../images/bg.jpg');
+	background-color: #dde3ec;
+	}
+
+	.banner{
+		text-align:center;
+		background: #303844;
+		margin:0 auto;		
+		}	
+
 .align_ctr{
 	text-align:center;
 }
 
 .align_lft{
-	margin:left;
+	text-align:left;
 }
+
+    .c_btn{
+    	width: 100px;
+    	height: 50px;
+    	background-color: #303844;
+    	border: 2px solid #ffffff;
+    	border-radius: 10px;
+    	position: fixed;
+    	right: 100px;
+    	bottom: 40%;
+    }
+    .c_btn #customizeBtn{
+
+		text-align: center;
+	    
+    	width: 100px;
+    	height: 50px;
+    	//border-top: 2px solid #ffffff;//利用border和rotate绘制箭头
+    	//border-left: 2px solid #ffffff;
+    	//border-right: 2px solid #ffffff;
+    	display: inline-block;
+    	//transform: translate(9px,35px) rotate(-45deg);
+    	cursor: pointer;
+    	z-index: 1000;//避免被其他div遮盖
+    }
+    .c_btn #customizeBtn:hover{
+    	border-width: 4px;
+    	transform:scale(1.5);
+    }
+
+    .btn #cat_menu:hover{
+   		border-width: 4px;
+    	transform:scale(1.05);
+    }

@@ -52,7 +52,7 @@
 			window.location = "test.html?id=2";	
 		}
 		else{
-			if (count<5){			
+			if (count<2){			
 				count = parseInt(count)+1;
 				window.location = "test.html?id="+count;
 			}

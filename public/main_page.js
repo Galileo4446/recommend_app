@@ -1,6 +1,7 @@
-	function ChooseOwn(){
+	/*function ChooseOwn(){
 		window.location ="test.html?id=1";	
 	}
+	*/
 	
 	$(document).ready(function(){
 		$("#cat_menu").click(function(){
@@ -11,3 +12,10 @@
 
 		});
 	});
+
+
+ 	function float_btn(){
+		
+		window.location = "test.html?id=1";
+	 	
+ 	}

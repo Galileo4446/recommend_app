@@ -17,10 +17,10 @@
 
     <script>
 	    if(count==false){
-		    document.getElementById("process").innerHTML = "1/5";
+		    document.getElementById("process").innerHTML = "1/2";
 	    }
 	    else{
-			document.getElementById("process").innerHTML = count+"/5";    
+			document.getElementById("process").innerHTML = count+"/2";    
 	    }
 	</script>
 
@@ -39,10 +39,10 @@
 			document.getElementById("pic"+String(i+1)).src = "../images/"+usr_fav[i]+".jpg";
 		}    
     </script>
-
+	<div class="align_ctr">
 	<button type = "button" onclick="show()">Show Recent</button>
 	<button type = "button" onclick="Next()">Next Step</button>
-
+	</div>
 
   </body>
 </html>
