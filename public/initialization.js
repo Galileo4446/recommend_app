@@ -263,6 +263,7 @@ $(document).ready(async function(){
                 like_list = data.like_list;
             };
             console.log(data.name)
+            console.log(like_list)
         });
         return like_list;
     };
@@ -313,6 +314,7 @@ $(document).ready(async function(){
         const querySnapshot = await db.collection("clothes_recommend").get();
         let minimum_cost = 10000;
         let recommend_id = "";
+        let recommend_num = 0;
 
         querySnapshot.forEach(doc => {
             const data = doc.data();
@@ -327,9 +329,10 @@ $(document).ready(async function(){
             if (cost < minimum_cost) {
                 minimum_cost = cost;
                 recommend_id = doc.id;
+                recommend_num = data.number;
             };
         });
-        return recommend_id;
+        return recommend_num;
     };
 
     const like_list = await get_like_list("7Y65aOJGorqY7ELWdSBP")
@@ -338,10 +341,11 @@ $(document).ready(async function(){
     // console.log("calc_average")
     // console.log(like_list_avg);
 
-    const recommend_id = await recommend_clothes(like_list_avg);
+    const recommend_num = await recommend_clothes(like_list_avg);
     console.log("recommend id is")
-    console.log(recommend_id);
-    $("#test").html(recommend_id);
+    console.log(recommend_num);
+    $("#test").html(recommend_num);
 
+    $('#demo3').html(`<img src="../images/${recommend_num}.jpg" alt="${recommend_num}">`);
 
 });
