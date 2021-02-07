@@ -106,39 +106,6 @@ $(document).ready(async function(){
 	});
 
 
-
-
-/*
-	$("#next_btn").on("click", async() => {
-		var last ="";
-
-		for(var i=0; i<4; i++) {		
-			if(chosen[i] != 0) {
-				last += chosen[i]+"%";				
-			}
-		}
-
-		if(count<2) {
-			window.location="test.html?id=2&q="+last;
-		}
-
-		else{
-			var q_val = getQueryVariable("q");
-			q_val += last;
-			var res = q_val.split("%");
-
-			try {
-				const doc =	await db.collection("users").doc(uid).set({like_list:res.slice(0,-1)})
-				console.log("Document written");
-				window.location="./end.html"
-			} catch (error) {
-				console.error("Error adding document: ", error);
-			}
-		}
-	});
-
-*/
-
 	//recent page num.
 	var count = getQueryVariable("id");
 

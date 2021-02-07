@@ -26,6 +26,7 @@ $(document).ready(() => {
 			console.log(userData);
 			
 			document.getElementById("login_btn").innerText = user.email;
+			document.getElementById("login_btn").innerHTML("href") = "./login.html";
 			
 		} else {
 			// User is signed out
