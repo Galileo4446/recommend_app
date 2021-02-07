@@ -34,6 +34,7 @@ $(document).ready(async function(){
 			return(false);
 		}
 
+		//change pic of chosen one
 		$('.pic').on('click', function() {
 			console.log($(this)[0].src)
 			const src = $(this)[0].src;
@@ -51,11 +52,9 @@ $(document).ready(async function(){
 			 	$(this)[0].src = "./images/lgton.png";
 			 	chosen[id] = previous_path[id].substr(-6, 2);
 			 }
-			 //console.log(chosen);
-			 //console.log(previous_path);
 		});
 
-
+	//go back to homepage
 	$("#home").on("click", () => { window.location="./main_page.html" })
 
 
@@ -63,13 +62,13 @@ $(document).ready(async function(){
 		console.log(user);
 		if (user) {
 			console.log(user);
-			//console.log(user.uid);
+
 			uid = user.uid;
 			const doc = await db.collection("users").doc(user.uid).get()
 			const userData = doc.data()
 			console.log(userData);
 			
-
+			//send chosen images to db
 			$("#next_btn").on("click", async() => {
 				var last ="";
 		
@@ -106,39 +105,6 @@ $(document).ready(async function(){
 	});
 
 
-
-
-/*
-	$("#next_btn").on("click", async() => {
-		var last ="";
-
-		for(var i=0; i<4; i++) {		
-			if(chosen[i] != 0) {
-				last += chosen[i]+"%";				
-			}
-		}
-
-		if(count<2) {
-			window.location="test.html?id=2&q="+last;
-		}
-
-		else{
-			var q_val = getQueryVariable("q");
-			q_val += last;
-			var res = q_val.split("%");
-
-			try {
-				const doc =	await db.collection("users").doc(uid).set({like_list:res.slice(0,-1)})
-				console.log("Document written");
-				window.location="./end.html"
-			} catch (error) {
-				console.error("Error adding document: ", error);
-			}
-		}
-	});
-
-*/
-
 	//recent page num.
 	var count = getQueryVariable("id");
 
@@ -153,8 +119,7 @@ $(document).ready(async function(){
 		}			
 	}    
 
-
-	console.log(count);
+	//show recent process
 	$("#process").html(count+"/2")
 
 });
