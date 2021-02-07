@@ -12,24 +12,24 @@ $(document).ready(() => {
 	// Initialize Firebase
 	firebase.initializeApp(firebaseConfig);
 	const auth = firebase.auth();
-	//console.log(auth);
+	console.log(auth);
   	const db = firebase.firestore();
 
 	auth.onAuthStateChanged(async (user) => {
+		console.log(user);
 		if (user) {
-			//console.log(user);
+			console.log(user);
 			//console.log(user.uid);
 			uid = user.uid;
-			const doc = await db.collection("user").doc(user.uid).get()
+			const doc = await db.collection("users").doc(user.uid).get()
 			const userData = doc.data()
 			console.log(userData);
 			
-			//document.getElementById("login_btn").innerHTML("herf") = "";
+			document.getElementById("login_btn").innerText = user.email;
 			
-
 		} else {
 			// User is signed out
-      		//location.href = './login2.html'; // 通常の遷移
+      location.href = './login.html'; // 通常の遷移
 		}
 	});
 	

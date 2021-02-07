@@ -34,105 +34,101 @@ $(document).ready(async function(){
 			return(false);
 		}
 
-	 	const v1 = $("#pic1");
-		$(v1).on('click',async () => {
-			if (v1[0].src.match("lgton"))
-			{
-				v1[0].src = previous_path[0];
-				chosen[0] = 0;			
-			} 
-			else 
-			{
-				previous_path[0] = v1[0].src;
-				v1[0].src = "./images/lgton.png";
-				chosen[0] = previous_path[0].substr(-6, 2);
-			}
+		$('.pic').on('click', function() {
+			console.log($(this)[0].src)
+			const src = $(this)[0].src;
+			const id = parseInt($(this)[0].id.slice(3,4))-1;
+			console.log(id);
+			//$(this)[0].src = "./images/lgton.png";
+			 if (src.match("lgton"))
+			 {
+				$(this)[0].src = previous_path[id];
+			 	chosen[id] = 0;			
+			 } 
+			 else 
+			 {
+			 	previous_path[id] = $(this)[0].src;
+			 	$(this)[0].src = "./images/lgton.png";
+			 	chosen[id] = previous_path[id].substr(-6, 2);
+			 }
+			 console.log(chosen);
+			 console.log(previous_path);
 		});
 
-		const v2 = $("#pic2");
-		$(v2).on('click',async () => {
-			if (v2[0].src.match("lgton"))
-			{
-				v2[0].src = previous_path[1];
-				chosen[1] = 0;			
-			} 
-			else 
-			{
-				previous_path[1] = v2[0].src;
-				v2[0].src = "./images/lgton.png";
-				chosen[1] = previous_path[1].substr(-6, 2);
-			}
-		});
+		// const v2 = $("#pic2");
+		// $(v2).on('click',async () => {
+		// 	if (v2[0].src.match("lgton"))
+		// 	{
+		// 		v2[0].src = previous_path[1];
+		// 		chosen[1] = 0;			
+		// 	} 
+		// 	else 
+		// 	{
+		// 		previous_path[1] = v2[0].src;
+		// 		v2[0].src = "./images/lgton.png";
+		// 		chosen[1] = previous_path[1].substr(-6, 2);
+		// 	}
+		// });
 
-		const v3 = $("#pic3");
-		$(v3).on('click',async () => {
-			if (v3[0].src.match("lgton"))
-			{
-				v3[0].src = previous_path[2];
-				chosen[2] = 0;			
-			} 
-			else 
-			{
-				previous_path[2] = v3[0].src;
-				v3[0].src = "./images/lgton.png";
-				chosen[2] = previous_path[2].substr(-6, 2);
-			}
-		});
+		// const v3 = $("#pic3");
+		// $(v3).on('click',async () => {
+		// 	if (v3[0].src.match("lgton"))
+		// 	{
+		// 		v3[0].src = previous_path[2];
+		// 		chosen[2] = 0;			
+		// 	} 
+		// 	else 
+		// 	{
+		// 		previous_path[2] = v3[0].src;
+		// 		v3[0].src = "./images/lgton.png";
+		// 		chosen[2] = previous_path[2].substr(-6, 2);
+		// 	}
+		// });
 
-		const v4 = $("#pic4");
-		$(v4).on('click',async () => {
-			if (v4[0].src.match("lgton"))
-			{
-				v4[0].src = previous_path[3];
-				chosen[3] = 0;			
-			} 
-			else 
-			{
-				previous_path[3] = v4[0].src;
-				v4[0].src = "./images/lgton.png";
-				chosen[3] = previous_path[3].substr(-6, 2);
-			}
-		});
+		// const v4 = $("#pic4");
+		// $(v4).on('click',async () => {
+		// 	if (v4[0].src.match("lgton"))
+		// 	{
+		// 		v4[0].src = previous_path[3];
+		// 		chosen[3] = 0;			
+		// 	} 
+		// 	else 
+		// 	{
+		// 		previous_path[3] = v4[0].src;
+		// 		v4[0].src = "./images/lgton.png";
+		// 		chosen[3] = previous_path[3].substr(-6, 2);
+		// 	}
+		// });
 
-	$("#home").on("click", ()=>{window.location="./main_page.html"})
+	$("#home").on("click", () => { window.location="./main_page.html" })
 
-
-	$("#next_btn").on("click", ()=>{
+	$("#next_btn").on("click", async() => {
 		var last ="";
 
-		for(var i=0;i<4;i++){		
-			if(chosen[i]!=0){
+		for(var i=0; i<4; i++) {		
+			if(chosen[i] != 0) {
 				last += chosen[i]+"%";				
 			}
 		}
 
-		if(count<2){
+		if(count<2) {
 			window.location="test.html?id=2&q="+last;
 		}
+
 		else{
 			var q_val = getQueryVariable("q");
 			q_val += last;
 			var res = q_val.split("%");
 
-
-			db.collection("user").doc("aHmJnWcgapfKo1HyFU0bjh0cc0J2").set({likelist:res.slice(0,-1)})
-		//db.collection("user").add({likelist:num})
-		// 成功
-		.then(function(docRef) {
-			// window.location.href = 'パス名'; // 通常の遷移
-			console.log("Document written");
-		})
-		// 例外
-		.catch(function(error) {
-			console.error("Error adding document: ", error);
-		});
-		setTimeout(()=>{window.location="./end.html"},2000);
+			try {
+				const doc =	await db.collection("users").doc("aHmJnWcgapfKo1HyFU0bjh0cc0J2").set({like_list:res.slice(0,-1)})
+				console.log("Document written");
+				window.location="./end.html"
+			} catch (error) {
+				console.error("Error adding document: ", error);
+			}
 		}
-		//console.log(q_val);
-		//console.log(res);
-
-	}
-	);
+	});
 
 
 
@@ -153,9 +149,5 @@ $(document).ready(async function(){
 
 	console.log(count);
 	$("#process").html(count+"/2")
-
-	function jump(){
-		window.location = "end.html";
-	}
 
 });

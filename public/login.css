@@ -48,10 +48,6 @@
 
     body {
       background: #303844;
-      background: -webkit-linear-gradient(right, #303844, #303844);
-      background: -moz-linear-gradient(right, #303844, #303844);
-      background: -o-linear-gradient(right, #303844,#303844);
-      background: linear-gradient(to left, #303844, #303844);
       font-family: "Roboto", sans-serif;
 
     }
