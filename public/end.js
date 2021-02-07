@@ -42,7 +42,8 @@ $(document).ready(async function(){
         try {
             querySnapshot.forEach(doc => {
                 const data = doc.data();
-                if (like_list.includes(doc.id)) {
+                // console.log(doc.id);
+                if (like_list.map( str => parseInt(str, 10) ).includes(data.number)) {
                     sum_color_vividness += parseInt(data.color_vividness, 10);
                     sum_color_brightness+= parseInt(data.color_brightness, 10);
                     sum_formal += parseInt(data.formal, 10);
@@ -109,11 +110,12 @@ $(document).ready(async function(){
         return recommend_num;
     };
 
-    const like_list = await get_like_list("aHmJnWcgapfKo1HyFU0bjh0cc0J2")
+    // const like_list = await get_like_list("aHmJnWcgapfKo1HyFU0bjh0cc0J2")
     // like_listあり・選択なし
     // const like_list = await get_like_list("yWJ3pPFrtiQY99iFX874")
     // like_listなし
     // const like_list = await get_like_list("4rV18PXYSej1MXP0kEt9")
+    const like_list = await get_like_list("Duy3WppwdjXHqZKJi45T")
 
     // like_listから好みを数値化
     const like_list_avg = await calc_avg(like_list);
