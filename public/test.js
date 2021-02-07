@@ -34,6 +34,7 @@ $(document).ready(async function(){
 			return(false);
 		}
 
+		//change pic of chosen one
 		$('.pic').on('click', function() {
 			console.log($(this)[0].src)
 			const src = $(this)[0].src;
@@ -51,11 +52,9 @@ $(document).ready(async function(){
 			 	$(this)[0].src = "./images/lgton.png";
 			 	chosen[id] = previous_path[id].substr(-6, 2);
 			 }
-			 //console.log(chosen);
-			 //console.log(previous_path);
 		});
 
-
+	//go back to homepage
 	$("#home").on("click", () => { window.location="./main_page.html" })
 
 
@@ -63,13 +62,13 @@ $(document).ready(async function(){
 		console.log(user);
 		if (user) {
 			console.log(user);
-			//console.log(user.uid);
+
 			uid = user.uid;
 			const doc = await db.collection("users").doc(user.uid).get()
 			const userData = doc.data()
 			console.log(userData);
 			
-
+			//send chosen images to db
 			$("#next_btn").on("click", async() => {
 				var last ="";
 		
@@ -120,8 +119,7 @@ $(document).ready(async function(){
 		}			
 	}    
 
-
-	console.log(count);
+	//show recent process
 	$("#process").html(count+"/2")
 
 });

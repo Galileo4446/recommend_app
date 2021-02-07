@@ -6,16 +6,14 @@
 	.banner{
 		text-align:center;
 		background: #303844;
-		margin:0 auto;		
+		margin:0 auto;
+		box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);		
 		}	
 
 .align_ctr{
 	text-align:center;
 }
 
-.align_lft{
-
-}
 
     .c_btn{
     	width: 150px;
