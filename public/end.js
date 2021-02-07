@@ -10,8 +10,25 @@ $(document).ready(async function(){
     };
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
     //   firebase.analytics();
-    var db = firebase.firestore();
+    const db = firebase.firestore();
+
+    let uid = '';
+	auth.onAuthStateChanged(async (user) => {
+		if (user) {
+			//console.log(user);
+			//console.log(user.uid);
+			uid = user.uid;
+			const doc = await db.collection("user").doc(user.uid).get()
+			const userData = doc.data()
+			console.log(userData);
+		} else {
+			// User is signed out
+      		//location.href = './login2.html'; // 通常の遷移
+		}
+	});
 
     const get_like_list = async (user_id) => {
         const querySnapshot = await db.collection("users").get();
@@ -115,7 +132,8 @@ $(document).ready(async function(){
     // const like_list = await get_like_list("yWJ3pPFrtiQY99iFX874")
     // like_listなし
     // const like_list = await get_like_list("4rV18PXYSej1MXP0kEt9")
-    const like_list = await get_like_list("Duy3WppwdjXHqZKJi45T")
+    // const like_list = await get_like_list("Duy3WppwdjXHqZKJi45T")
+    const like_list = await get_like_list(uid)
 
     // like_listから好みを数値化
     const like_list_avg = await calc_avg(like_list);
