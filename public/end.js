@@ -10,10 +10,51 @@ $(document).ready(async function(){
     };
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
     //   firebase.analytics();
-    var db = firebase.firestore();
+    const db = firebase.firestore();
+
+    // let uid = 'x91N0EDNe6dZ6mz6xv7NvneoiZe2';
+	auth.onAuthStateChanged(async (users) => {
+		if (users) {
+			let uid = users.uid;
+            console.log(uid);
+            const like_list = await get_like_list(uid);
+        
+            // like_listから好みを数値化
+            const like_list_avg = await calc_avg(like_list);
+            console.log(like_list_avg);
+        
+            const recommend_num = await recommend_clothes(like_list_avg);
+            console.log(recommend_num);
+        
+            $('#pic_field').html(
+                `
+                <div id ="up" style="text-align:center">
+                <p>Recommend For You!!</p>
+                <img src="./images/${recommend_num}.jpg" alt="${recommend_num}" width = "640" height ="640">
+                <p>Recommend機能をご利用いただきありがとうございます。</p>
+                <p>表示されている商品に限り、5%OFFでご提供させていただきます。</p>
+                <p>また、店舗購入でさらに10%OFFで購入できます！</p>
+                </div>
+                `
+            );        
+		} else {
+            uid = "Duy3WppwdjXHqZKJi45T"
+            console.log("test user!")
+			// User is signed out
+      		//location.href = './login2.html'; // 通常の遷移
+		}
+	});
+
+    $("#home_button").on('click',function(){
+        console.log("test")
+        window.location.href = './main_page.html'; // 通常の遷移
+    });
 
     const get_like_list = async (user_id) => {
+        console.log(user_id);
         const querySnapshot = await db.collection("users").get();
         let like_list;
         querySnapshot.forEach(doc => {
@@ -42,7 +83,8 @@ $(document).ready(async function(){
         try {
             querySnapshot.forEach(doc => {
                 const data = doc.data();
-                if (like_list.includes(doc.id)) {
+                // console.log(doc.id);
+                if (like_list.map( str => parseInt(str, 10) ).includes(data.number)) {
                     sum_color_vividness += parseInt(data.color_vividness, 10);
                     sum_color_brightness+= parseInt(data.color_brightness, 10);
                     sum_formal += parseInt(data.formal, 10);
@@ -51,6 +93,24 @@ $(document).ready(async function(){
                     sum_glossy += parseInt(data.glossy, 10);
                     sum_smoothness += parseInt(data.smoothness, 10);
                 }
+            });
+            let len = like_list.length;
+            const avg_color_vividness = sum_color_vividness / len;
+            const avg_color_brightness = sum_color_brightness / len;
+            const avg_formal = sum_formal / len;
+            const avg_decorative = sum_decorative / len;
+            const avg_relaxed = sum_relaxed / len;
+            const avg_glossy = sum_glossy / len;
+            const avg_smoothness = sum_smoothness / len;
+            console.log(avg_formal);
+            return ({
+                avg_color_vividness,
+                avg_color_brightness,
+                avg_formal,
+                avg_decorative,
+                avg_relaxed,
+                avg_glossy,
+                avg_smoothness
             });
         }
         catch(e) {
@@ -65,24 +125,6 @@ $(document).ready(async function(){
             </div>
             `
         );
-
-        console.log(like_list.length);
-        const avg_color_vividness = sum_color_vividness / like_list.length;
-        const avg_color_brightness = sum_color_brightness / like_list.length;
-        const avg_formal = sum_formal /like_list.length;
-        const avg_decorative = sum_decorative /like_list.length;
-        const avg_relaxed = sum_relaxed /like_list.length;
-        const avg_glossy = sum_glossy /like_list.length;
-        const avg_smoothness = sum_smoothness /like_list.length;
-        return ({
-            avg_color_vividness,
-            avg_color_brightness,
-            avg_formal,
-            avg_decorative,
-            avg_relaxed,
-            avg_glossy,
-            avg_smoothness
-        });
     };
     // 商品の中からおすすめを選択し、idで表示。
     const recommend_clothes = async (like_list_avg) => {
@@ -109,28 +151,12 @@ $(document).ready(async function(){
         return recommend_num;
     };
 
-    const like_list = await get_like_list("aHmJnWcgapfKo1HyFU0bjh0cc0J2")
+    // const like_list = await get_like_list("aHmJnWcgapfKo1HyFU0bjh0cc0J2")
     // like_listあり・選択なし
     // const like_list = await get_like_list("yWJ3pPFrtiQY99iFX874")
     // like_listなし
     // const like_list = await get_like_list("4rV18PXYSej1MXP0kEt9")
+    // const like_list = await get_like_list("Duy3WppwdjXHqZKJi45T")
 
-    // like_listから好みを数値化
-    const like_list_avg = await calc_avg(like_list);
-    console.log(like_list_avg);
 
-    const recommend_num = await recommend_clothes(like_list_avg);
-    console.log(recommend_num);
-
-    $('#pic_field').html(
-        `
-        <div id ="up" style="text-align:center">
-        <p>Recommend For You!!</p>
-        <img src="./images/${recommend_num}.jpg" alt="${recommend_num}" width = "640" height ="640">
-        <p>Recommend機能をご利用いただきありがとうございます。</p>
-        <p>表示されている商品に限り、5%OFFでご提供させていただきます。</p>
-        <p>また、店舗購入でさらに10%OFFで購入できます！</p>
-        </div>
-        `
-    );
 });

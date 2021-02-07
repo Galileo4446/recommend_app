@@ -1,64 +1,125 @@
+$(document).ready(async function(){
+	let uid = '';
+    var firebaseConfig = {
+        apiKey: "AIzaSyBmO4dLGt5aasYgt9iIcnadjE21Hfw8RCE",
+        authDomain: "recommend-app-c2184.firebaseapp.com",
+        projectId: "recommend-app-c2184",
+        storageBucket: "recommend-app-c2184.appspot.com",
+        messagingSenderId: "630278469111",
+        appId: "1:630278469111:web:04d2046960c64b4c432af2",
+        measurementId: "G-8PSJ51KHDJ"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    //   firebase.analytics();
+    const db = firebase.firestore();
+
+	const auth = firebase.auth();
+
+//===================DB setting above===================
+
 	var previous_path = new Array();
 
-	var chosen = new Array();
+	var chosen = [0,0,0,0];
 
-	function chooseImg(id,src){
-
-		element = document.getElementById(id)
-		if (element.src.match("lgton"))
+		//get query val.
+		function getQueryVariable(variable)
 		{
-			element.src = previous_path[id];
-			chosen[id.slice(3)] = 0;			
-		} 
-		else 
-		{
-			previous_path[id] = src;
-			element.src = "./images/lgton.jpg";
-			chosen[id.slice(3)] = 1;
+			var query = window.location.search.substring(1);
+			var vars = query.split("&");
+			for (var i=0;i<vars.length;i++) {
+				var pair = vars[i].split("=");
+				if(pair[0] == variable){return pair[1];}
+			}
+			return(false);
 		}
-	 }
 
-	function show(){
-		var total;
-		total = "";			
-		for (var i=0;i<=chosen.length;i++){
-			if (chosen[i] == 1){
-			total += String(i);			
-			}			
+		//change pic of chosen one
+		$('.pic').on('click', function() {
+			console.log($(this)[0].src)
+			const src = $(this)[0].src;
+			const id = parseInt($(this)[0].id.slice(3,4))-1;
+			//console.log(id);
+
+			 if (src.match("lgton"))
+			 {
+				$(this)[0].src = previous_path[id];
+			 	chosen[id] = 0;			
+			 } 
+			 else 
+			 {
+			 	previous_path[id] = $(this)[0].src;
+			 	$(this)[0].src = "./images/lgton.png";
+			 	chosen[id] = previous_path[id].substr(-6, 2);
+			 }
+		});
+
+	//go back to homepage
+	$("#home").on("click", () => { window.location="./main_page.html" })
+
+
+	auth.onAuthStateChanged(async (user) => {
+		console.log(user);
+		if (user) {
+			console.log(user);
+
+			uid = user.uid;
+			const doc = await db.collection("users").doc(user.uid).get()
+			const userData = doc.data()
+			console.log(userData);
+			
+			//send chosen images to db
+			$("#next_btn").on("click", async() => {
+				var last ="";
+		
+				for(var i=0; i<4; i++) {		
+					if(chosen[i] != 0) {
+						last += chosen[i]+"%";				
+					}
+				}
+		
+				if(count<2) {
+					window.location="test.html?id=2&q="+last;
+				}
+		
+				else{
+					var q_val = getQueryVariable("q");
+					q_val += last;
+					var res = q_val.split("%");
+		
+					try {
+						const doc =	await db.collection("users").doc(uid).set({like_list:res.slice(0,-1)})
+						console.log("Document written");
+						window.location="./end.html"
+					} catch (error) {
+						console.error("Error adding document: ", error);
+					}
+				}
+			});
+
+			
+		} else {
+			// User is signed out
+      location.href = './login.html'; // 通常の遷移
 		}
-		if (total != ""){
-			alert(total);			
-		}			
-		//console.log(total);		
-	}
-
-	function getQueryVariable(variable)
-	{
-	    var query = window.location.search.substring(1);
-	    var vars = query.split("&");
-	    for (var i=0;i<vars.length;i++) {
-	        var pair = vars[i].split("=");
-	        if(pair[0] == variable){return pair[1];}
-	    }
-	    return(false);
-	}
+	});
 
 
+	//recent page num.
 	var count = getQueryVariable("id");
 
-	function Next(){
-		if(count==NaN||count==false){
-			window.location = "test.html?id=2";	
-		}
-		else{
-			if (count<2){			
-				count = parseInt(count)+1;
-				window.location = "test.html?id="+count;
-			}
-			else
-			{
-				window.location = "end.html";
-			}	
-		}	
-	}
-	
+
+	//show pic in order
+	for(var i=0;i<4;i++){
+		if(count==1){
+			document.getElementById("pic"+String(i+1)).src = "./images/0"+(i+1)+".jpg";
+		}else
+		{
+			document.getElementById("pic"+String(i+1)).src = "./images/0"+(i+5)+".jpg";			
+		}			
+	}    
+
+	//show recent process
+	$("#process").html(count+"/2")
+
+});

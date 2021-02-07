@@ -6,29 +6,31 @@
 	.banner{
 		text-align:center;
 		background: #303844;
-		margin:0 auto;
-		box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);		
+		margin:0 auto;		
 		}	
 
 .align_ctr{
 	text-align:center;
 }
 
+.align_lft{
+
+}
 
     .c_btn{
     	width: 150px;
     	height: 30px;
     	background-color:  #dde3ec;
     	position: fixed;
-    	right: 150px;
+    	right: 100px;
     	bottom: 40%;
 		box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
     }
     .c_btn #customizeBtn{
 
 		text-align: center;    
-    	width: 150px;
-    	height: 75px;
+    	width: 100px;
+    	height: 50px;
     	display: inline-block;
     	cursor: pointer;
     	z-index: 1000;/*set on top*/
@@ -43,8 +45,7 @@
 
 
 	.ct_bt{
-	text-align:left;
-			
+	text-align:left;		
 	}
     .ct_bt #menu1:hover{
     	transform:scale(1.05);
@@ -66,9 +67,6 @@
 		border-color:#303844;
 		border-style:solid;
 		border-width:5px;
-	}
-
-	.login{
-		text-align:right;
-		background-color: #3b4453;
+		width:25%;
+		height:auto;
 	}

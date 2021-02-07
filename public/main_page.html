@@ -7,42 +7,52 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
 
 	<link rel="stylesheet" type="text/css" href="main_page.css">
 
-    <script src="main_page.js"></script >
+    <script src="main_page.js"></script>
+    <script src="test_driver.js"></script>
 
 </head>
+
   <body>
 	<div class="banner"><img  src="./images/banner.png" style="max-width: 100%"></div>
-	<div style="text-align:right;background-color: #3b4453;"><button type="button">Log in</button></br></div>
+	<div class="login"><a id="login_btn" href="./login.html" style="color :#FFFFFF;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Log in</a></br></div>
 	
-	<div class="btn"><img id ="cat_menu" src="./images/ct_btn.png" style="width:15%;height:auto;max-width: 100%"></div>
+	<div class="btn"><img id ="cat_menu" src="./images/ct_btn.png" style="width:15%;height:auto;max-width: 100%;"></div>
 
 	<div  class="ct_bt"><br>
-		<img id="menu1" src="./images/c1.png" onclick="javascript:window.location.href='end.html'" style="width:150px;height:76px;display:none;">
-		<img id="menu2" src="./images/c2.png" onclick="javascript:window.location.href='end.html'" style="width:150px;height:76px;display:none;">
-		<img id="menu3" src="./images/c3.png" onclick="javascript:window.location.href='end.html'" style="width:150px;height:76px;display:none;">
-		<img id="menu4" src="./images/c4.png" onclick="javascript:window.location.href='end.html'" style="width:150px;height:76px;display:none;">
+		<img id="menu1" src="./images/c1.png" onclick="javascript:window.location.href='demo_page/demo_parker.html'" style="width:150px;height:76px;display:none;">
+		<img id="menu2" src="./images/c2.png" onclick="javascript:window.location.href='demo_page/demo_parker.html'" style="width:150px;height:76px;display:none;">
+		<img id="menu3" src="./images/c3.png" onclick="javascript:window.location.href='demo_page/demo_parker.html'" style="width:150px;height:76px;display:none;">
+		<img id="menu4" src="./images/c4.png" onclick="javascript:window.location.href='demo_page/demo_parker.html'" style="width:150px;height:76px;display:none;">
 	</br></div>
 
 	<div class="align_ctr">
 		<br>
-		<img id ="cp1" src="./images/1.jpg" onclick="javascript:window.location='end.html'" style="width:25%;height:auto;">
-		<img id ="cp2" src="./images/1.jpg" onclick="javascript:window.location='end.html'" style="width:25%;height:auto;">
+		<img class="pic" id ="cp1" src="./images/1.jpg" onclick="javascript:window.location='end.html'">
+		<img class="pic" id ="cp2" src="./images/1.jpg" onclick="javascript:window.location='end.html'">
 		</br>
 		<br>
-		<img id ="cp3" src="./images/1.jpg" onclick="javascript:window.location='end.html'" style="width:25%;height:auto;">
-		<img id ="cp4" src="./images/1.jpg" onclick="javascript:window.location='end.html'" style="width:25%;height:auto;">
+		<img class="pic" id ="cp3" src="./images/1.jpg" onclick="javascript:window.location='end.html'" >
+		<img class="pic" id ="cp4" src="./images/1.jpg" onclick="javascript:window.location='end.html'">
 		</br>
 		<br>
-		<img id ="cp5" src="./images/1.jpg" onclick="javascript:window.location='end.html'" style="width:25%;height:auto;">
-		<img id ="cp6" src="./images/1.jpg" onclick="javascript:window.location='end.html'" style="width:25%;height:auto;">
+		<img class="pic" id ="cp5" src="./images/1.jpg" onclick="javascript:window.location='end.html'">
+		<img class="pic" id ="cp6" src="./images/1.jpg" onclick="javascript:window.location='end.html'">
 		</br>
 	</div>
 
+	<script>
+		for(var i=0;i<6;i++){
+			document.getElementById("cp"+String(i+1)).src = "../images/"+usr_fav[i]+".jpg";
+		}    
+    </script>
+
+
 	<div class="c_btn">
-		<span title="Customize" id="customizeBtn" onclick="javascript:window.location='test.html?id=1'"><image src="./images/co_button.png" style="margin:0;width:175%;weight:auto;"></span>
+		<span title="Customize" id="customizeBtn" onclick="javascript:window.location='test.html?id=1&q='"><image src="../images/co_button.png" style="text-align:center;margin:0;width:175%;height:auto;"></span>
 	</div>
 	
   </body>
