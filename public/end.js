@@ -11,7 +11,6 @@ $(document).ready(async function(){
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
-
     //   firebase.analytics();
     const db = firebase.firestore();
 
